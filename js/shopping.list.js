@@ -6,18 +6,20 @@ window.index = {
 
         }).done(function (response) {
             console.log(response);
-            index.displayShoppingLists(response.content);
-        });
+            index.displayShoppingLists(response);
+});
     },
 
     getShoppingListsHtml: function (shoppingList) {
         return `<a href="shoppingList.html" class="author-name" style="color:Tomato;">${shoppingList.name}
                                 </a>`
     },
-    displayShoppingLists: function (shoppingList) {
-        var shoppingListsHtml = "";
+    displayShoppingLists: function (shoppingLists) {
+        let shoppingListsHtml ="";
+        let oneShoppingList = new Set(shoppingLists);
 
-        shoppingList.forEach(oneShoppingList => shoppingListsHtml += index.getShoppingListsHtml(oneShoppingList));
+
+        shoppingLists.forEach(oneShoppingList => shoppingListsHtml += index.getShoppingListsHtml(oneShoppingList));
 
         $(".section-padding .item .single-testimonial").html(shoppingListsHtml);
     },
@@ -26,7 +28,7 @@ window.index = {
         let descriptionValue = $("#description-field").val();
         let budgetValue = $("#budget-field").val();
 
-        var requestBody = {
+        let requestBody = {
             name: nameValue,
             description: descriptionValue,
             budget: budgetValue,
@@ -44,7 +46,7 @@ window.index = {
     },
     deleteItem: function (id, done) {
         $.ajax({
-            url: ToDoList.API_URL + "?id=" + id,
+            url: index.API_BASE_URL + "?id=" + id,
             method: "DELETE",
         }).done(function () {
             index.getShoppingLists();
