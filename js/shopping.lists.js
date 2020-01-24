@@ -7,15 +7,27 @@ window.index = {
         }).done(function (response) {
             console.log(response);
             index.displayShoppingLists(response);
-});
+        });
     },
 
+
+    getShoppingList: function (id) {
+        $.ajax({url: index.API_BASE_URL + "/shoppingLists/" + id}).done(function (response) {
+            console.log(response);
+
+        })
+    },
+
+
     getShoppingListsHtml: function (shoppingList) {
-        return `<a href="shoppingList.html" class="author-name" style="color:Tomato;">${shoppingList.name}
-                                </a>`
+        return`
+<a href="shoppingList.html" onclick="index.getShoppingList(${shoppingList.id})" class="author-name" style="color:Tomato;">${shoppingList.name}
+                                </a> `
+
+
     },
     displayShoppingLists: function (shoppingLists) {
-        let shoppingListsHtml ="";
+        let shoppingListsHtml = "";
         let oneShoppingList = new Set(shoppingLists);
 
 
@@ -51,6 +63,7 @@ window.index = {
         }).done(function () {
             index.getShoppingLists();
         })
+
     },
     bindEvents: function () {
         $("#create-list-form").submit(function (event) {
@@ -58,8 +71,8 @@ window.index = {
 
             index.createShoppingList();
         });
-
     }
 };
+
 index.getShoppingLists();
 index.bindEvents();
