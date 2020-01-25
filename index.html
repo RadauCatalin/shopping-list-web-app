@@ -9,7 +9,8 @@
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+          integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous"/>
     <!-- Bootstrap css form cdn -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
@@ -22,6 +23,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,7 +62,6 @@
                     <ul class="nav navbar-nav navbar-right text-uppercase">
                         <li class="current"><a href="#slider">home</a></li>
                         <li><a href="#testimonial">shopping lists</a></li>
-                        <li><a href="#services"></a></li>
                     </ul>
                 </div>
             </div>
@@ -160,7 +161,7 @@
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
                             <div class="single-testimonial">
-                                <a id="button"  href="shoppingList.html" class="author-name" style="color:Tomato;">
+                                <a id="button" class="author-name" style="color:Tomato;">
                                     These are your
                                     shopping lists:
                                 </a>
@@ -173,19 +174,80 @@
         </div>
     </div>
 </div><!-- End testimonials -->
+<div id="content">
+    <form id="create-list-form">
+        <label for="name-field">Name: </label>
+        <input type="text" id="name-field" placeholder="Name">
 
-<form id="create-list-form">
-    <label for="description-field">Name: </label>
-    <input type="text" id="name-field" placeholder="Name">
+        <label for="description-field">Description: </label>
+        <input type="text" id="description-field" placeholder="Description">
 
-    <label for="description-field">Description: </label>
-    <input type="text" id="description-field" placeholder="Description">
+        <label for="budget-field">Budget: </label>
+        <input id="budget-field" placeholder="00.0">
 
-    <label for="budget-field">Budget: </label>
-    <input type="price" id="budget-field" placeholder="00.0">
+        <input type="submit" id="submit-form">
+    </form>
+    <div id="list-name">
+        <h1>Shopping list name</h1>
+        <h2 style="color:#627363;">Description</h2>
+        <a class="delete-list">
+            <i id="delete" class="far fa-trash-alt"></i><- Delete this shopping list</a>
+    </div>
+    <h3>Add new product</h3>
 
-    <input type="submit" id="submit-form">
-</form>
+    <form id="create-item-form">
+        <label for="productName-field">Name: </label>
+        <input type="text" id="productName-field" placeholder="Name">
+
+        <label for="deadline-field">Price: </label>
+        <input id="deadline-field" placeholder="00.0">
+
+        <input type="submit" id="submit-form2">
+    </form>
+
+    <table id="budget">
+        <thead>
+        <tr>
+            <th>Budget</th>
+            <th>Remaining budget</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>00.00</td>
+            <td>00.00</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table id="products">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Is bought</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Apple</td>
+            <td>5.6</td>
+            <td><input type="checkbox" class="mark-done"></td>
+            <td><a href="#" class="delete-product">
+                <i class="far fa-trash-alt"></i></a></td>
+        </tr>
+        <tr>
+            <td>Learn Javascript</td>
+            <td>04.11.2019</td>
+            <td><input type="checkbox" class="mark-done"></td>
+            <td><a href="#" class="delete-product">
+                <i class="far fa-trash-alt"></i></a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 
 <section class="footer-top section-padding">
@@ -254,5 +316,7 @@
 <!-- jQuery main script -->
 <script src="js/main.js"></script>
 <script src="js/shopping.lists.js"></script>
+
+
 </body>
 </html>

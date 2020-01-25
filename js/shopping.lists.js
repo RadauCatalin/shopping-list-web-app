@@ -9,20 +9,33 @@ window.index = {
             index.displayShoppingLists(response);
         });
     },
-
-
     getShoppingList: function (id) {
-        $.ajax({url: index.API_BASE_URL + "/shoppingLists/" + id}).done(function (response) {
+        $.ajax({
+            url: index.API_BASE_URL + "/shoppingLists/" + id
+
+        }).done(function (response) {
             console.log(response);
+            index.displayList(response)
 
         })
     },
+    displayListhtml: function (shoppingList) {
+    return `<div><h1>${shoppingList.name}</h1>
+        <h2 style="color:#627363;">${shoppingList.description}</h2>
+        <a id="delete" href="#testimonial" onclick="index.deleteList(${shoppingList.id})" class="author-name" style="color:Tomato;">Delete this list
+                                </a>\`</div>`
 
+    },
+    displayList: function (shoppingList) {
+        let shoppingListHtml = index.displayListhtml(shoppingList);
+        $("#list-name").html(shoppingListHtml)
+    },
 
     getShoppingListsHtml: function (shoppingList) {
-        return`
-<a href="shoppingList.html" onclick="index.getShoppingList(${shoppingList.id})" class="author-name" style="color:Tomato;">${shoppingList.name}
-                                </a> `
+        return `
+<a href="#" onclick="index.getShoppingList(${shoppingList.id})" class="author-name" style="color:Tomato;">${shoppingList.name}
+                                </a>`
+
 
 
     },
@@ -56,9 +69,9 @@ window.index = {
             index.getShoppingLists();
         })
     },
-    deleteItem: function (id, done) {
+    deleteList: function (id) {
         $.ajax({
-            url: index.API_BASE_URL + "?id=" + id,
+            url: index.API_BASE_URL + "/shoppingLists/" + id,
             method: "DELETE",
         }).done(function () {
             index.getShoppingLists();
@@ -68,9 +81,16 @@ window.index = {
     bindEvents: function () {
         $("#create-list-form").submit(function (event) {
             event.preventDefault();
-
             index.createShoppingList();
         });
+        $("#testimonial").click(function (evet) {
+            evet.preventDefault();
+
+        });
+        $("#delete").click(function (evet) {
+            evet.preventDefault();
+
+        })
     }
 };
 
