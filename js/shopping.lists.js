@@ -41,11 +41,12 @@ window.index = {
     },
     displayProductsHtml: function (product) {
         var checkedAttribute = product.isBought ? "checked" : "";
+        //todo: find a way to show if product is bought and get functionality for checkbox
         return `<tr>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
                     <td><input type="checkbox" oninput="index.markItemBought(${product.id})" class="mark-done" ${checkedAttribute}></td>
-                    <td><a id="delete-product" href="#list" onclick="index.deleteProduct()" class="delete-product">
+                    <td><a id="delete-product" href="#list" onclick="index.deleteProduct(${product.id})" class="delete-product">
                         <i class="far fa-trash-alt"></i></a></td>
                 </tr>`
 
@@ -110,9 +111,10 @@ window.index = {
             index.getShoppingLists();
         })
     },
-    deleteProduct: function () {
-        let productIdValue = 10;
+    deleteProduct: function (productIdValue) {
+        //let productIdValue = 10;
         let listIdValue = 55;
+        //todo: take list id dynamically somehow
         let requestBody = {
             productID: productIdValue,
             listID: listIdValue,
@@ -130,6 +132,7 @@ window.index = {
         let descriptionValue = $("#productName-field").val();
         let deadlineValue = $("#deadline-field").val();
         let listIdvalue = 55;
+        //todo: take list id dynamically somehow
 
         var requestBody = {
             name: descriptionValue,
@@ -180,7 +183,7 @@ window.index = {
             event.preventDefault();
             index.createItem();
         });
-        $("#check").input(function (event) {
+        $("#check").click(function (event) {
             event.preventDefault();
             //let id = $(this).data("id");
             //let checked = $(this).is(":checked");
