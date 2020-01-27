@@ -151,104 +151,99 @@
     </div>
 </section> <!-- End about -->
 
-<h2 style="text-align: center">These are your shopping lists:</h2>
-<div id="testimonial" class="section-padding">
-    <div data-velocity="-.3" class="overlay-bg testimonial-bg"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div id="testimonial-list" class="carousel slide text-center" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <div class="single-testimonial">
-                                <a id="button" class="author-name" style="color:Tomato;">
-                                    These are your
-                                    shopping lists:
-                                </a>
-                                <input type="submit" id="open-form">
+<section id="list">
+    <h2 style="text-align: center">These are your shopping lists:</h2>
+    <div id="testimonial" class="section-padding">
+        <div data-velocity="-.3" class="overlay-bg testimonial-bg"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div id="testimonial-list" class="carousel slide text-center" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <div class="single-testimonial">
+                                    <a id="button" class="author-name" style="color:Tomato;">
+                                        These are your
+                                        shopping lists:
+                                    </a>
+                                    <input type="submit" id="open-form">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div><!-- End testimonials -->
+    <div id="content">
+        <form id="create-list-form">
+            <label for="name-field">Name: </label>
+            <input type="text" id="name-field" placeholder="Name">
+
+            <label for="description-field">Description: </label>
+            <input type="text" id="description-field" placeholder="Description">
+
+            <label for="budget-field">Budget: </label>
+            <input id="budget-field" placeholder="00.0">
+
+
+
+            <input type="submit" id="submit-form">
+        </form>
+        <div id="list-name">
+            <h1>Shopping list name</h1>
+            <h2 style="color:#627363;">Description</h2>
+            <a id="delete" href="#testimonial" class="author-name" style="color:Tomato;">Delete this list
+            </a>
+
+
+            <table id="budget">
+                <thead>
+                <tr>
+                    <th>Budget</th>
+                    <th>Remaining budget</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+            <table id="products">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Is bought</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><input type="button" class="mark-done"></td>
+                    <td><a id="delete-item" onloadeddata="this" href="#" class="delete-product">
+                        <i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        <h3>Add new product</h3>
+        <form id="create-product-form">
+            <label for="productName-field">Name: </label>
+            <input type="text" id="productName-field" placeholder="Name">
+
+            <label for="deadline-field">Price: </label>
+            <input id="deadline-field" placeholder="00.0">
+
+            <input type="submit" id="submit-form2">
+        </form>
     </div>
-</div><!-- End testimonials -->
-<div id="content">
-    <form id="create-list-form">
-        <label for="name-field">Name: </label>
-        <input type="text" id="name-field" placeholder="Name">
-
-        <label for="description-field">Description: </label>
-        <input type="text" id="description-field" placeholder="Description">
-
-        <label for="budget-field">Budget: </label>
-        <input id="budget-field" placeholder="00.0">
-
-        <input type="submit" id="submit-form">
-    </form>
-    <div id="list-name">
-        <h1>Shopping list name</h1>
-        <h2 style="color:#627363;">Description</h2>
-        <a class="delete-list">
-            <i id="delete" class="far fa-trash-alt"></i><- Delete this shopping list</a>
-    </div>
-    <h3>Add new product</h3>
-
-    <form id="create-item-form">
-        <label for="productName-field">Name: </label>
-        <input type="text" id="productName-field" placeholder="Name">
-
-        <label for="deadline-field">Price: </label>
-        <input id="deadline-field" placeholder="00.0">
-
-        <input type="submit" id="submit-form2">
-    </form>
-
-    <table id="budget">
-        <thead>
-        <tr>
-            <th>Budget</th>
-            <th>Remaining budget</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>00.00</td>
-            <td>00.00</td>
-        </tr>
-        </tbody>
-    </table>
-
-    <table id="products">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Is bought</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Apple</td>
-            <td>5.6</td>
-            <td><input type="checkbox" class="mark-done"></td>
-            <td><a href="#" class="delete-product">
-                <i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        <tr>
-            <td>Learn Javascript</td>
-            <td>04.11.2019</td>
-            <td><input type="checkbox" class="mark-done"></td>
-            <td><a href="#" class="delete-product">
-                <i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-
+</section>
 
 <section class="footer-top section-padding">
     <div class="container">
