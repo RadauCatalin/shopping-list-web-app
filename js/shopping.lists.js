@@ -1,5 +1,6 @@
 window.index = {
     API_BASE_URL: "http://localhost:8082",
+    shoppingListId: 0,
     getShoppingLists: function () {
         $.ajax({
             url: index.API_BASE_URL + "/shoppingLists"
@@ -16,8 +17,12 @@ window.index = {
         }).done(function (response) {
             console.log(response);
             index.displayList(response);
-            index.displayProducts(response.products)
-        })
+            index.displayProducts(response.products);
+            index.getListId(response.id);
+        });
+    },
+    getListId: function (listID) {
+        index.shoppingListId = listID;
     },
     displayListhtml: function (shoppingList) {
         return `<div><h1>${shoppingList.name}</h1>
@@ -45,7 +50,7 @@ window.index = {
         return `<tr>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
-                    <td><input type="checkbox" oninput="index.markItemBought(${product.id})" class="mark-done" ${checkedAttribute}></td>
+                    <td><input type="checkbox" class="mark-done" ${checkedAttribute}></td>
                     <td><a id="delete-product" href="#list" onclick="index.deleteProduct(${product.id})" class="delete-product">
                         <i class="far fa-trash-alt"></i></a></td>
                 </tr>`
@@ -113,8 +118,7 @@ window.index = {
     },
     deleteProduct: function (productIdValue) {
         //let productIdValue = 10;
-        let listIdValue = 55;
-        //todo: take list id dynamically somehow
+        let listIdValue = index.shoppingListId;
         let requestBody = {
             productID: productIdValue,
             listID: listIdValue,
@@ -125,19 +129,18 @@ window.index = {
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            index.getShoppingLists();
+            index.getShoppingList(index.shoppingListId);
         })
     },
     createItem: function () {
         let descriptionValue = $("#productName-field").val();
         let deadlineValue = $("#deadline-field").val();
-        let listIdvalue = 55;
-        //todo: take list id dynamically somehow
+        let listIdValue = index.shoppingListId;
 
         var requestBody = {
             name: descriptionValue,
             price: deadlineValue,
-            listId: listIdvalue,
+            listId: listIdValue,
         };
 
         $.ajax({
@@ -147,7 +150,7 @@ window.index = {
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            index.getShoppingLists();
+            index.getShoppingList(index.shoppingListId);
         });
     },
     markItemBought: function (id, isBought) {
@@ -160,7 +163,7 @@ window.index = {
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            index.getShoppingLists();
+            index.getShoppingList(index.shoppingListId);
         })
     },
     bindEvents: function () {
