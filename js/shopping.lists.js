@@ -45,12 +45,9 @@ window.index = {
 
     },
     displayProductsHtml: function (product) {
-        var checkedAttribute = product.isBought ? "checked" : "";
-        //todo: find a way to show if product is bought and get functionality for checkbox
         return `<tr>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
-                    <td><input type="checkbox" class="mark-done" ${checkedAttribute}></td>
                     <td><a id="delete-product" href="#list" onclick="index.deleteProduct(${product.id})" class="delete-product">
                         <i class="far fa-trash-alt"></i></a></td>
                 </tr>`
@@ -153,9 +150,9 @@ window.index = {
             index.getShoppingList(index.shoppingListId);
         });
     },
-    markItemBought: function (id, isBought) {
+    markItemBought: function (id, Bought) {
         let requestBody = {
-            isBought: isBought
+            Bought: Bought
         };
         $.ajax({
             url: index.API_BASE_URL + "products/" + id,
@@ -186,11 +183,11 @@ window.index = {
             event.preventDefault();
             index.createItem();
         });
-        $("#check").click(function (event) {
+        $("#check").delegate(".mark-Bought", "change", function (event) {
             event.preventDefault();
-            //let id = $(this).data("id");
-            //let checked = $(this).is(":checked");
-            //index.markItemBought(id, checked)
+            let id = $(this).data("id");
+            let checked = $(this).is(":checked");
+            index.markItemBought(id, checked)
         })
     }
 };
